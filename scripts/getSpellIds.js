@@ -1,3 +1,4 @@
+// This is used for lib/utils to map the spell ids to the spell names.
 const axios = require("axios").default;
 
 const resp = axios
