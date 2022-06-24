@@ -17,7 +17,8 @@ import {
 import { getColorFromDivision } from "../../../lib/rank";
 import ThemedBackground from "../../../components/Gradient";
 import Link from "next/link";
-import { ArrowDownIcon } from '@radix-ui/react-icons'
+import { LinkIcon, HeartIcon } from "@heroicons/react/solid";
+import toast from "react-hot-toast";
 
 export default function Summoner({
   summoner,
@@ -31,6 +32,18 @@ export default function Summoner({
   }
 
   const theme = getColorFromDivision(info[0].tier);
+
+  const onLinkCopy = () => {
+    navigator.clipboard.writeText(
+      `https://feint.gg/summoner/${router.query.region}/${summoner.name}`
+    );
+
+    toast("Copied to clipboard!");
+  };
+
+  const onFavoriteAdd = () => {
+    toast(`Added ${summoner.name} to favorites!`);
+  };
 
   return (
     <div className="max-w-6xl mx-auto px-5 py-10">
@@ -46,13 +59,24 @@ export default function Summoner({
           <div className="text-2xl font-semibold">{summoner.name}</div>
           <div className="text-mute">{summoner.level}</div>
         </div>
+        <div className="ml-auto items-start flex gap-2">
+          <button onClick={onLinkCopy}>
+            <LinkIcon width={20} className="hover:text-blue-500" />
+          </button>
+          <button onClick={onFavoriteAdd}>
+            <HeartIcon width={20} className="hover:text-red-500" />
+          </button>
+        </div>
       </div>
       <div className="flex pt-5 gap-5">
-        <div className="flex flex-col gap-5">
+        <div
+          style={{ maxWidth: "240px" }}
+          className="flex flex-col gap-5 w-full"
+        >
           {info.map((rank) => (
             <div
               key={rank.queue}
-              className="flex gap-5 rounded border bg-primary-100 p-3"
+              className="flex gap-5 rounded border bg-primary-100 py-6 px-4"
             >
               <div>
                 <Image
@@ -74,7 +98,7 @@ export default function Summoner({
             </div>
           ))}
         </div>
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 w-full">
           {matches.map((match) => (
             <div
               key={match.gameId}
@@ -155,11 +179,7 @@ export default function Summoner({
               </div>
               <div className="flex flex-col ml-auto">
                 {match.allies.map((ally) => (
-                  <Link
-                    href={`/summoner/${
-                      router.query.region
-                    }/${ally.name}`}
-                  >
+                  <Link href={`/summoner/${router.query.region}/${ally.name}`}>
                     <a className="flex gap-1 items-center hover:text-blue-500">
                       <img
                         width={20}
@@ -172,11 +192,7 @@ export default function Summoner({
               </div>
               <div className="flex flex-col ml-auto">
                 {match.enemies.map((enemy) => (
-                  <Link
-                    href={`/summoner/${
-                      router.query.region
-                    }/${enemy.name}`}
-                  >
+                  <Link href={`/summoner/${router.query.region}/${enemy.name}`}>
                     <a className="flex gap-1 hover:text-blue-500 items-center">
                       <img
                         width={20}
@@ -187,9 +203,7 @@ export default function Summoner({
                   </Link>
                 ))}
               </div>
-              <div className="ml-auto">
-                
-              </div>
+              <div className="ml-auto"></div>
             </div>
           ))}
         </div>
