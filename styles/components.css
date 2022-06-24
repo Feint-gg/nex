@@ -1,0 +1,27 @@
+input {
+    @apply border bg-theme rounded table-cell focus:border-blue-500;
+}
+
+h1 {
+    @apply text-3xl font-bold;
+}
+
+h2 {
+    @apply text-2xl font-bold;
+}
+
+h3 {
+    @apply text-xl font-bold;
+}
+
+h4 {
+    @apply text-lg font-bold;
+}
+
+h5 {
+    @apply text-sm font-bold;
+}
+
+h6 {
+    @apply text-xs font-bold;
+}

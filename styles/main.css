@@ -1,0 +1,7 @@
+html {
+    background-color: var(--theme);
+}
+
+main {
+    min-height: 90vh;
+}
