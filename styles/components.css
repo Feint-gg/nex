@@ -1,7 +1,3 @@
-input {
-    @apply border bg-theme rounded table-cell focus:border-blue-500;
-}
-
 h1 {
     @apply text-3xl font-bold;
 }

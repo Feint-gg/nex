@@ -1,3 +1,4 @@
+import { SearchIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 import GithubIcon from "./GithubIcon";
 
@@ -8,13 +9,13 @@ interface Props {
 export default function Layout({ children }: Props) {
   return (
     <div>
-      <header className="bg-primary-100 relative z-30 border-b flex items-center p-5">
+      <header className="bg-primary-100 relative z-30 border-b flex items-center px-5 h-14">
         <a className="text-lg font-semibold">Feint</a>
-        <div className="mx-auto">
-          <input
-            placeholder="Search for a summoner..."
-            className="p-0.5 pl-4 w-96"
-          />
+        <div style={{ maxWidth: "400px" }} className="flex-1 px-5">
+          <div className="border flex bg-theme rounded">
+            <SearchIcon className="mx-3" width={15} />
+            <input placeholder="Search..." className="p-1 bg-theme rounded" />
+          </div>
         </div>
         <div className="ml-auto">
           <a href="https://github.com/feint-gg/nex">
