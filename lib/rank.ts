@@ -3,7 +3,7 @@ export function getColorFromDivision(division: string) {
         case "CHALLENGER":
             return "#FFC107";
         case "GRANDMASTER":
-            return "#D32F2F";
+            return "#EC423C";
         case "MASTER":
             return "#1976D2";
         case "DIAMOND":
@@ -18,5 +18,18 @@ export function getColorFromDivision(division: string) {
             return "#FFC107";
         default:
             return "#FFC107";
+    }
+}
+
+export function beautifyQueueType(type: string) {
+    switch (type) {
+        case "RANKED_SOLO_5x5":
+            return "Solo Queue";
+        case "RANKED_FLEX_SR":
+            return "Flex Queue";
+        case "RANKED_FLEX_TT":
+            return "Flex Queue";
+        default:
+            return type;
     }
 }

@@ -14,7 +14,7 @@ import {
   getSummonerSpell,
   upperFirstLetter,
 } from "../../../lib/utils";
-import { getColorFromDivision } from "../../../lib/rank";
+import { beautifyQueueType, getColorFromDivision } from "../../../lib/rank";
 import ThemedBackground from "../../../components/Gradient";
 import Link from "next/link";
 import { LinkIcon, HeartIcon } from "@heroicons/react/solid";
@@ -76,29 +76,36 @@ export default function Summoner({
           {info.map((rank) => (
             <div
               key={rank.queue}
-              className="flex gap-5 rounded border bg-primary-100 py-6 px-4"
+              className="flex flex-col gap-5 rounded border bg-primary-100"
             >
-              <div>
-                <Image
-                  height={50}
-                  width={50}
-                  src={`/ranks/${rank.tier.toLowerCase()}.webp`}
-                />
-              </div>
-              <div>
-                <div style={{ color: getColorFromDivision(rank.tier) }}>
-                  {upperFirstLetter(rank.tier)} {rank.rank}
-                </div>
-                <div className="text-sm">{rank.lp} LP</div>
+              <div className="bg-primary-200 font-bold border-b p-3 text-center rounded-t">{beautifyQueueType(rank.queue)}</div>
+              <div className="flex gap-5 px-3 pb-5">
                 <div>
-                  {rank.wins}W {rank.losses}L{" "}
-                  {Math.round((rank.wins / (rank.wins + rank.losses)) * 100)}%
+                  <Image
+                    height={50}
+                    width={50}
+                    src={`/ranks/${rank.tier.toLowerCase()}.webp`}
+                  />
+                </div>
+                <div>
+                  <div
+                    className="text-lg font-semibold"
+                    style={{ color: getColorFromDivision(rank.tier) }}
+                  >
+                    {upperFirstLetter(rank.tier)} {rank.rank}
+                  </div>
+                  <div className="">{rank.lp} LP</div>
+                  <div className="text-sm pt-2 text-mute">
+                    {rank.wins}W {rank.losses}L{" "}
+                    {Math.round((rank.wins / (rank.wins + rank.losses)) * 100)}%
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
         <div className="flex flex-col gap-5 w-full">
+          <div className="p-5 border bg-primary-100 rounded"></div>
           {matches.map((match) => (
             <div
               key={match.gameId}

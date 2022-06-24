@@ -7,7 +7,7 @@ interface Props {
       <div>
         <style jsx>{`
           div {
-            z-index: 5;
+            z-index: 0;
             position: absolute;
             top: 0;
             left: 0;
@@ -20,7 +20,7 @@ interface Props {
               ${backgroundColor ?? "var(--gradient)"} 0%,
               rgba(255, 255, 255, 0) 100%
             );
-            transform: translateY(-180vh);
+            transform: translateY(-175vh);
           }
         `}</style>
       </div>

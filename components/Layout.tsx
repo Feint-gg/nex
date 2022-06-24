@@ -5,7 +5,7 @@ interface Props {
 export default function Layout({ children }: Props) {
     return (
        <div>
-            <header className="bg-primary-100 z-20 border-b flex items-center p-5">
+            <header className="bg-primary-100 relative z-30 border-b flex items-center p-5">
                 <a className="text-lg font-semibold">
                     Feint
                 </a>
